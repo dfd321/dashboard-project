@@ -52,17 +52,43 @@ Multi-widget dashboard displaying cryptocurrency prices (BTC/ETH), weather data,
 - `feature/calendar-widget`: Google Calendar integration
 - `feature/backend-api`: API gateway implementation
 
-## Testing Commands
+## Backend API Implementation
+The backend is fully implemented with the following endpoints:
+
+### API Endpoints
+- **`GET /api/crypto/prices`**: Returns BTC/ETH prices with 60s cache
+- **`GET /api/weather?lat=X&lon=Y`**: Returns weather data with 10min cache
+- **`GET /api/calendar/events`**: Returns calendar events (requires OAuth)
+- **`GET /api/calendar/status`**: Returns authentication status
+- **`GET /api/auth/google`**: Initiates Google OAuth flow
+- **`GET /api/auth/google/callback`**: Handles OAuth callback
+- **`POST /api/auth/logout`**: Clears session
+- **`GET /health`**: Health check endpoint
+
+### Rate Limits
+- Crypto API: 60 requests/minute
+- Weather API: 100 requests/10 minutes
+- Calendar API: 50 requests/5 minutes
+- Auth API: 5 requests/15 minutes
+
+### Environment Setup
+Copy `backend/.env.example` to `backend/.env` and configure:
+- `OPENWEATHER_API_KEY`: Required for weather data
+- `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET`: Required for calendar OAuth
+
+### Development Commands
 ```bash
+# Backend
+cd backend && npm install
+cd backend && npm run dev        # Start development server
+cd backend && npm run build      # Build TypeScript
+cd backend && npm run lint       # Run ESLint
+cd backend && npm run typecheck  # Type checking
+
 # Frontend
 cd frontend && npm run test
 cd frontend && npm run lint
 cd frontend && npm run typecheck
-
-# Backend
-cd backend && npm run test
-cd backend && npm run lint
-cd backend && npm run typecheck
 ```
 
 ## Development Workflow
