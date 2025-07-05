@@ -1,8 +1,16 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { CalendarWidget } from './components/CalendarWidget';
 import { CryptoWidget } from './components/CryptoWidget';
 import WeatherWidget from './components/WeatherWidget';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (
@@ -15,6 +23,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <CryptoWidget />
             <WeatherWidget />
+            <CalendarWidget />
           </div>
         </div>
       </div>
