@@ -25,12 +25,12 @@ describe('CryptoWidget', () => {
   it('renders loading state initially', () => {
     renderWithQuery(<CryptoWidget />);
     
-    expect(screen.getByText('Cryptocurrency Prices')).toBeInTheDocument();
+    expect(screen.getByText('Cryptocurrency Prices')).toBeDefined();
   });
 
   it('renders widget title', () => {
     renderWithQuery(<CryptoWidget />);
     
-    expect(screen.getByText('Cryptocurrency Prices')).toBeInTheDocument();
+    expect(screen.getByText('Cryptocurrency Prices')).toBeDefined();
   });
 });
