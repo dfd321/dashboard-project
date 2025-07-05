@@ -1,5 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { CalendarWidget } from './components/CalendarWidget';
+import { CryptoWidget } from './components/CryptoWidget';
+import WeatherWidget from './components/WeatherWidget';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,10 +15,14 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-gray-100 py-8">
-        <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+      <div className="min-h-screen bg-gradient-to-br from-blue-400 to-purple-600 p-8">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-4xl font-bold text-white mb-8 text-center">
+            Dashboard
+          </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <CryptoWidget />
+            <WeatherWidget />
             <CalendarWidget />
           </div>
         </div>
